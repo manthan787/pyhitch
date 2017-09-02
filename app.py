@@ -114,11 +114,9 @@ class MainApplication(Frame):
         s.send(init_string)
         # send size to the server/receiver
         try:
-            read = 0
-            with open(file, "r") as f:
-                while read < size:
-                    content = f.read(1024)
-                    read += len(content)
+            with open(file, "rb") as f:
+                content = f.read(1024)
+                while True:
                     self.progressbar['value'] = self.progressbar['value'] +\
                     100*(len(content) / size)
                     print self.progressbar['value']
@@ -127,6 +125,7 @@ class MainApplication(Frame):
                     if not content:
                         print "No Content in between!"
                     s.send(content)
+                    content = f.read(1024)
         except Exception as e:
             print "Exception while sending file"
         finally:
