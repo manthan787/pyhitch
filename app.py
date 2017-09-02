@@ -121,7 +121,9 @@ class MainApplication(Frame):
                     100*(len(content) / size)
                     print self.progressbar['value']
                     self.progressbar.update_idletasks()
+                    print "Content Length", len(content)
                     if not content:
+                        print "Breaking from sending..."
                         break
                     s.send(content)
                     content = f.read(1024)
