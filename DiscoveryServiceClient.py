@@ -8,6 +8,10 @@ class MyListener(object):
         self.services = {}
 
     def remove_service(self, zeroconf, type, name):
+        info = zeroconf.get_service_info(type, name)
+        device = info.properties['device']
+        if device in self.services:
+            del self.services[device]
         print("Service %s removed" % (name,))
 
     def add_service(self, zeroconf, type, name):

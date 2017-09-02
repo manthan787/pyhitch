@@ -105,6 +105,7 @@ class MainApplication(Frame):
         file = self.filename
         if not os.path.isfile(file):
             raise Exception("Not a file, please provide a path to a file")
+        print ip
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((ip, 4000))
         size = os.path.getsize(file)
@@ -114,20 +115,21 @@ class MainApplication(Frame):
         s.send(init_string)
         # send size to the server/receiver
         try:
-            with open(file, "rb") as f:
+            with open(file, "r") as f:
                 content = f.read(1024)
                 while True:
                     self.progressbar['value'] = self.progressbar['value'] +\
                     100*(len(content) / size)
                     print self.progressbar['value']
                     self.progressbar.update_idletasks()
-                    print "Content Length", len(content)
                     if not content:
                         print "No Content in between!"
+                        break
                     s.send(content)
                     content = f.read(1024)
         except Exception as e:
             print "Exception while sending file"
+            print e
         finally:
             print "Closing connection!"
             s.close()
