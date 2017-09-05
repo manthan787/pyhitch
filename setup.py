@@ -5,7 +5,8 @@ options = {}
 
 if sys.platform == 'darwin':
     dist_dependency = ['py2app']
-    options = {'py2app': {'iconfile': 'data/hitch.icns'}}
+    options = {'py2app': {'iconfile': 'data/hitch.icns'}, 
+               'plist': {'LSPrefersPPC': True}}
 elif sys.platform == 'win32':
     dist_dependency = ['py2exe']
 else:
