@@ -2,7 +2,7 @@
 
 This project is experimental implementation for a cross-version Airdrop using Zeroconf. 
 
-I started out with Python to build the desktop application from file-sharing on local network, but didn't really like the desktop app
+I started out with Python to build the desktop application for file-sharing on local network, but didn't really like the desktop app
 experience. 
 
 Eventually, I decided to move on and use Electron to build the Desktop App to make it easier to hold the "cross-platform" part. 
